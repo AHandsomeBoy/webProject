@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	
+	<script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script>
+        var scroHeight = $("#top").height();
+        var current=0;
+        $(document).on("mousewheel DOMMouseScroll", function (e) {
+
+            var delta = (e.originalEvent.wheelDelta && (e.originalEvent.wheelDelta > 0 ? 1 : -1)) ||  // chrome & ie
+                (e.originalEvent.detail && (e.originalEvent.detail > 0 ? -1 : 1));              // firefox
+
+
+            if (delta > 0) {
+                // 向上滚
+                current = current == 0?-(2*scroHeight):current + scroHeight;
+            } else if (delta < 0) {
+                // 向下滚
+                current = current == -(2*scroHeight)?0:current - scroHeight;
+            }
+            $("#top").animate({marginTop:current},500)
+        });
+	</script>
+	<style>
+		*{
+			margin:0px;
+			padding:0px;
+			font-family:微软雅黑;
+			font-size: 12px;
+		}
+		html,body{
+			width:100%;
+			height:100%;
+		}
+		a{
+			display: inline-block;
+			padding:0px 9px;
+			height:40px;
+			text-decoration: none;
+			line-height: 40px;
+		}
+		a:hover{
+			color:gray;
+			background:lightgray;
+		}
+		.scroll{
+			height:100%;
+			width:100%;
+		}
+		
+	</style>
+</head>
+
+<body style="overflow: hidden">
+	<div id="top" style="width:100%;height:100%;">
+		<div class="scroll" style="background: lightgreen">
+			
+		</div>
+		<div class="scroll" style="background:black">
+		
+		</div>
+		<div class="scroll" style="background:yellow">
+		
+		</div>
+	</div>
+	
+	<!--<p>多行滚动演示：</p>
+	<div id="scrollDiv">
+		<ul>
+			<li>这是公告标题的第1行</li>
+			<li>这是公告标题的第2行</li>
+			<li>这是公告标题的第3行</li>
+			<li>这是公告标题的第4行</li>
+			<li>这是公告标题的第5行</li>
+			<li>这是公告标题的第6行</li>
+			<li>这是公告标题的第7行</li>
+			<li>这是公告标题的第8行</li>
+		</ul>
+	</div>-->
+</body>
+</html>
